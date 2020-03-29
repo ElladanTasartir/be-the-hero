@@ -1,0 +1,36 @@
+.logon-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto; 
+    /* margin 0 auto faz com que o conteúdo fique centralizado na tela */
+
+
+    display: flex; 
+    /* facilita o alinhamento dos itens, quando se coloca display flex, todos os filhos do container, no caso a div
+    vão ficar um ao lado do outro, ao menos que se mude a direção do flex com o flex-direction: column;, por exemplo
+    que deixa um abaixo do outro*/
+    align-items: center;
+    /* alinha os items verticalmente */
+    justify-content: space-between;
+    /* alinha os itens horizontalmente */
+}
+
+.logon-container section.form {
+    width: 100%;
+    max-width: 350px;
+    margin-right: 30px;
+    /* utilizado para dar uma distânciada da logo */
+}
+
+.logon-container section.form form{
+    margin-top: 100px
+    /* para distanciar um pouco da logo */
+}
+
+.logon-container section.form form h1{
+    font-size: 32px;
+    margin-bottom: 32px;
+    /* utilizado para distânciar o h1 do resto do formulário */
+}
+

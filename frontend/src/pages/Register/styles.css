@@ -1,0 +1,72 @@
+.register-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto; 
+    /* margin 0 auto faz com que o conteúdo fique centralizado na tela */
+
+
+    display: flex; 
+    /* facilita o alinhamento dos itens, quando se coloca display flex, todos os filhos do container, no caso a div
+    vão ficar um ao lado do outro, ao menos que se mude a direção do flex com o flex-direction: column;, por exemplo
+    que deixa um abaixo do outro*/
+    align-items: center;
+    /* alinha os items verticalmente */
+    justify-content: center;
+    /* alinha os itens horizontalmente */
+}
+
+.register-container .content {
+    width: 100%;
+    padding: 96px;
+    background: #f0f0f5;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    /* tamanho no eixo x, tamanho no eixo y, tamanho do blurr, rgba que entra um preto normal, 000 e 0.1 ou 10% de opacidade */
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-between;
+    /* space-between vai fazer, jogar uma section completamente pra esquerda, outro completamente pra direita e jogar
+    um espaço entre eles */
+    align-items: center;
+}
+
+.register-container .content section{
+    width: 100%;
+    max-width: 380px;
+}
+
+.register-container .content section h1{
+    margin: 64px 0 32px;
+    /* 64px em cima, 0 embaixo e 32px nas laterais */
+    font-size: 32px;
+}
+
+.register-container .content section p{
+    font-size: 18px;
+    color: #737380;
+    line-height: 32px;
+}
+
+.register-container .content form{
+    width: 100%;
+    max-width: 450px;
+}
+
+.register-container .content form input{
+    margin-top: 8px;
+}
+
+.register-container .content form .input-group{
+    display: flex;
+}
+
+/* sintaxe do seletor + no css
+ele pega o input, no caso, que tenho um input antes, ou seja
+ele vai estilizar todo 2º input dessa classe input-group
+Os inputs ficaram um ao lado do outro por causa do flex, que transforma tudo em um container
+horizontal
+ */
+.register-container .content form .input-group input + input{
+    margin-left: 8px;
+}
