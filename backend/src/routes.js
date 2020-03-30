@@ -6,6 +6,9 @@ const IncidentController = require('./controllers/IncidentController');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController')
 
+const {celebrate, Segments, Joi } = require('celebrate');
+//celebrate é uma biblioteca de validação
+
 const routes = express.Router();
 // desacoplando o módulo de rotas do express em uma nova variável para manipular
 
@@ -27,13 +30,32 @@ routes.post('/sessions', SessionController.create);
 
 //Método get é acessado sempre que acessamos a rota no navegador
 routes.get('/ongs', OngController.index);
-routes.post('/ongs', OngController.create);
+//É preciso validar os dados enviados no corpo da requisição
+routes.post('/ongs', celebrate({
+    //vai buscar no body e entender como um objeto os valores das requisições, com essas chaves
+    [Segments.BODY]: Joi.object().keys({
+        //name
+        name: Joi.string().required(),
+        email: Joi.string().required().email(),
+        whatsapp: Joi.number().required().min(10),
+        city: Joi.string().required().length(2),
+    })
+}), OngController.create);
+//primeiro ele faz a validação e depois insere, pela ordem dos parâmetros no express
 
-routes.get('/profile', ProfileController.index);
+routes.get('/profile', celebrate({
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.string().required(),
+    }).unknown(), 
+}),ProfileController.index);
 
 routes.get('/incidents', IncidentController.index);
 routes.post('/incidents', IncidentController.create);
-routes.delete('/incidents/:id', IncidentController.delete); //recebe um route param porque precisa da informação do id presente para pegar e deletar
+routes.delete('/incidents/:id', celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().required
+    })
+}), IncidentController.delete); //recebe um route param porque precisa da informação do id presente para pegar e deletar
                                                             //o incidente
 
 

@@ -2,6 +2,7 @@ const express = require('express');
 // importa o microframework (express) para usar suas funcionalidades
 // esse micro framework lida com rotas
 const cors = require('cors');
+const { errors } = require('celebrate');
 //um pacote que permite controlar quem acessa a api
 const routes = require('./routes'); //o ponto barra significa que é um arquivo e não um pacote, se não
 // assim como no exemplo de cima no express, ele buscaria por um pacote ao invés de um arquivo local
@@ -17,6 +18,8 @@ app.use(express.json());
 // Isso faz com que o back-end entenda json, então ele vai converter o json em um objeto js
 
 app.use(routes);
+//faz com que o erro não quebre o sistema, mas consiga usar o celebrate para retornar o erro na resposta
+app.use(errors());
 
 //Bancos de dados:
 
